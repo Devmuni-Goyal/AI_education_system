@@ -1,23 +1,38 @@
 import os
-from fastapi import FastAPI, Query
+from pathlib import Path
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from ai_education.services import get_home_data  
-from services import get_home_data  # Ensure this function is defined in services.py
-from database import search_database, store_chatbot_log  # Ensure these exist in database.py
+from fastapi.templating import Jinja2Templates
 
-# Ensure the 'static' directory exists
-os.makedirs("static", exist_ok=True)
+# Define paths
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
+TEMPLATES_DIR = BASE_DIR / "templates"
+
+# Ensure necessary directories exist
+os.makedirs(STATIC_DIR / "css", exist_ok=True)
+os.makedirs(STATIC_DIR / "js", exist_ok=True)
+os.makedirs(TEMPLATES_DIR, exist_ok=True)
+
+# Debugging print
+print(f"Static Directory Path: {STATIC_DIR}")  # Print to verify the static directory exists
 
 app = FastAPI()
 
-# Mounting static folder
-app.mount("/static", StaticFiles(directory=os.path.abspath("static")), name="static")
+# Mount static folder correctly
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+# Set up Jinja2 templates
+templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 @app.get("/", response_class=HTMLResponse)
-async def read_home():
+async def read_home(request: Request):
     """Home route to render the homepage overview of the platform."""
-    return get_home_data()
+    try:
+        return templates.TemplateResponse("index.html", {"request": request})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 @app.get("/ai_learning")
 async def ai_learning():
@@ -45,17 +60,17 @@ async def contact_us():
     return {"message": "Contact Us Information"}
 
 @app.get("/chatbot")
-async def chatbot(query: str = Query(..., description="User's query")):
+async def chatbot(query: str):
     """Handles chatbot queries and stores logs."""
-    response_message = f"You asked: {query}. This is a placeholder response from the chatbot."
+    response_text = "I am AI Chatbot! How can I help you?"
     
-    # Storing chatbot log in the database
-    store_chatbot_log(user_id=1, user_query=query, chatbot_response=response_message)
-    
-    return JSONResponse(content={"message": response_message})
+    return JSONResponse(content={"response": response_text})
 
-@app.get("/search")
-async def search(query: str):
-    """Handles search queries and returns database results."""
-    results = search_database(query)
-    return JSONResponse(content={"query": query, "results": results})
+# Optional logging to track content length and data
+@app.middleware("http")
+async def log_request(request: Request, call_next):
+    response = await call_next(request)
+    content_length = response.headers.get("content-length")
+    if content_length:
+        print(f"Response Content-Length: {content_length}")
+    return response

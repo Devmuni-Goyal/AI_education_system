@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Education Platform</title>
+    
+    <!-- Corrected path for CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+
+    <meta name="description" content="AI-Based Education Platform for personalized learning">
+    <meta name="keywords" content="AI, Education, Learning, Online Study">
+    <meta name="author" content="AI Education System Team">
+</head>
+<body>
+    <h1>Welcome to AI-Based Education Platform</h1>
+
+    <nav>
+        <ul>
+            <li><a href='/ai_learning'>AI Learning</a></li>
+            <li><a href='/resources_hub'>Resources Hub</a></li>
+            <li><a href='/ethics_of_ai'>Ethics of AI</a></li>
+            <li><a href='/about_us'>About Us</a></li>
+            <li><a href='/contact_us'>Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <button id="clickMeBtn">Click Me</button>
+
+    <!-- Chatbot UI -->
+    <div id="chatbot-icon">&#x1F4AC;</div>
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <span>Chat with us!</span>
+            <button onclick="closeChatbot()">X</button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="bot-message">Hello! How can I assist you today?</div>
+        </div>
+        <div id="chatbot-input">
+            <input type="text" placeholder="Type your message..." />
+            <button>Send</button>
+        </div>
+    </div>
+
+    <!-- Corrected path for JS file -->
+    <script src="{{ url_for('static', path='js/script.js') }}"></script>
+</body>
+</html>
