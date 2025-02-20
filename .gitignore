@@ -1,0 +1,20 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Virtual Environment
+ai_education/Scripts/
+ai_education/Lib/
+ai_education/Include/
+ai_education/pyvenv.cfg
+
+# Ignore Logs
+*.log
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore environment variables
+.env
