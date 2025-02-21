@@ -14,7 +14,8 @@
 </head>
 <body>
     <h1>Welcome to AI-Based Education Platform</h1>
-
+     <!-- Header and Navigation -->
+<header>
     <nav>
         <ul>
             <li><a href='/ai_learning'>AI Learning</a></li>
@@ -24,24 +25,29 @@
             <li><a href='/contact_us'>Contact Us</a></li>
         </ul>
     </nav>
-
-    <button id="clickMeBtn">Click Me</button>
-
-    <!-- Chatbot UI -->
-    <div id="chatbot-icon">&#x1F4AC;</div>
-    <div id="chatbot">
-        <div id="chatbot-header">
-            <span>Chat with us!</span>
-            <button onclick="closeChatbot()">X</button>
-        </div>
-        <div id="chatbot-messages">
-            <div class="bot-message">Hello! How can I assist you today?</div>
-        </div>
-        <div id="chatbot-input">
-            <input type="text" placeholder="Type your message..." />
-            <button>Send</button>
-        </div>
+    
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <button onclick="alert('Search query: ' + document.getElementById('searchBar').value)">Send</button>
     </div>
+
+</header>
+
+<!-- Chatbot Button -->
+<div id="chatbot-icon" onclick="toggleChatbot()">💬</div>
+
+<!-- Chatbot Window -->
+<div id="chatbot">
+    <div id="chatbot-header">
+        <span>AI Chatbot</span>
+        <button onclick="toggleChatbot()">✖</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input">
+        <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
 
     <!-- Corrected path for JS file -->
     <script src="{{ url_for('static', path='js/script.js') }}"></script>

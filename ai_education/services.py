@@ -11,6 +11,7 @@ def get_home_data():
         </head>
         <body>
             <h1>Welcome to AI-Based Education Platform</h1>
+        <header> 
             <nav>
                 <ul>
                     <li><a href='/ai_learning'>AI Learning</a></li>
@@ -20,6 +21,7 @@ def get_home_data():
                     <li><a href='/contact_us'>Contact Us</a></li>
                 </ul>
             </nav>
+        </header>
         </body>
     </html>
     """

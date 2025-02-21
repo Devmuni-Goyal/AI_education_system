@@ -1,25 +1,23 @@
-/* Google Font - Used for a clean and modern look */
+/* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* General Body Styling */
 body {
-    font-family: 'Poppins', sans-serif; /* Applying Google Font */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Light gray background for better readability */
-    color: #333; /* Dark gray text */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Header Section - Needs to be added in index.html */
+/* Header Section */
 header {
     background-color: #1a1a1a;
     padding: 1.5em 3em;
     text-align: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    color: white; /* Ensuring text is visible */
 }
 
-/* Navigation Bar */
+/* Navigation */
 nav ul {
     list-style: none;
     padding: 0;
@@ -42,10 +40,10 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #fbc531; /* Highlight color on hover */
+    color: #fbc531;
 }
 
-/* Main Content Styling */
+/* Main Content */
 main {
     padding: 4em 8%;
     text-align: center;
@@ -66,11 +64,11 @@ p {
     margin: 0 auto;
 }
 
-/* Button Styling */
+/* Button */
 .btn {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #fbc531; /* Yellow theme */
+    background-color: #fbc531;
     color: #1a1a1a;
     font-weight: bold;
     font-size: 16px;
@@ -93,7 +91,7 @@ p {
     }
 }
 
-/* Chatbot Icon - Floating button for chatbot access */
+/* Chatbot Icon  and code start from here */
 #chatbot-icon {
     position: fixed;
     bottom: 20px;
@@ -113,7 +111,7 @@ p {
     transform: scale(1.1);
 }
 
-/* Chatbot Box - Hidden until activated */
+/* Chatbot Box */
 #chatbot {
     position: fixed;
     bottom: 80px;
@@ -122,11 +120,11 @@ p {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    display: none; /* Initially hidden */
+    display: none;
     flex-direction: column;
 }
 
-/* Chatbot Header */
+/* Header */
 #chatbot-header {
     background: #1a1a1a;
     color: white;
@@ -147,7 +145,7 @@ p {
     cursor: pointer;
 }
 
-/* Chatbot Messages Section */
+/* Messages */
 #chatbot-messages {
     padding: 15px;
     height: 250px;
@@ -156,7 +154,7 @@ p {
     flex-direction: column;
 }
 
-/* Message Styling */
+/* User & Bot Messages */
 .message {
     max-width: 75%;
     padding: 8px 12px;
@@ -164,19 +162,17 @@ p {
     border-radius: 5px;
 }
 
-/* User Message */
 .user-message {
     background: #fbc531;
     align-self: flex-end;
 }
 
-/* Bot Message */
 .bot-message {
     background: #e1e1e1;
     align-self: flex-start;
 }
 
-/* Chatbot Input Box */
+/* Input Area */
 #chatbot-input {
     display: flex;
     padding: 10px;
@@ -198,10 +194,3 @@ p {
     cursor: pointer;
     border-radius: 5px;
 }
-
-/* 🔹 Updates Needed:
-1️⃣ Ensure that `header` is added in `index.html` for styling to apply.
-2️⃣ Ensure chatbot JavaScript functionality is implemented in `script.js` to toggle chatbot display.
-3️⃣ Check `static/css/style.css` is linked properly in `index.html` using:  
-   `<link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">`
-4️⃣ Improve chatbot UI for mobile responsiveness if needed. */
