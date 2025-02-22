@@ -10,7 +10,7 @@ def get_home_data():
             <title>AI-Based Education Platform</title>
         </head>
         <body>
-            <h1>Welcome to AI-Based Education Platform</h1>
+            <h1>Welcome to AI-Based  Education Platform</h1>
         <header> 
             <nav>
                 <ul>

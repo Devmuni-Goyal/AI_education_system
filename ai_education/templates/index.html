@@ -3,53 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Based Education Platform</title>
+    <title>{% block title %}AI-Based Education Platform{% endblock %}</title>
     
-    <!-- Corrected path for CSS file -->
+    <!-- Link to local CSS file for styling -->
     <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
 
+    <!-- FontAwesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Meta tags for SEO -->
     <meta name="description" content="AI-Based Education Platform for personalized learning">
     <meta name="keywords" content="AI, Education, Learning, Online Study">
     <meta name="author" content="AI Education System Team">
 </head>
 <body>
     <h1>Welcome to AI-Based Education Platform</h1>
-     <!-- Header and Navigation -->
-<header>
-    <nav>
-        <ul>
-            <li><a href='/ai_learning'>AI Learning</a></li>
-            <li><a href='/resources_hub'>Resources Hub</a></li>
-            <li><a href='/ethics_of_ai'>Ethics of AI</a></li>
-            <li><a href='/about_us'>About Us</a></li>
-            <li><a href='/contact_us'>Contact Us</a></li>
-        </ul>
-    </nav>
-    
-    <div style="position: absolute; top: 20px; right: 20px;">
-        <input type="text" id="searchBar" placeholder="Search...">
-        <button onclick="alert('Search query: ' + document.getElementById('searchBar').value)">Send</button>
+
+    <!-- Header and Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href='/ai_learning'>AI Learning</a></li>
+                <li><a href='/resources_hub'>Resources Hub</a></li>
+                <li><a href='/ethics_of_ai'>Ethics of AI</a></li>
+                <li><a href='/about_us'>About Us</a></li>
+                <li><a href='/contact_us'>Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <!-- Search Bar -->
+        <div style="position: absolute; top: 20px; right: 20px;">
+            <input type="text" id="searchBar" placeholder="Search...">
+            <button onclick="alert('Search query: ' + document.getElementById('searchBar').value)">Send</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area (This will be replaced by child templates) -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Chatbot Button -->
+    <div id="chatbot-icon" onclick="toggleChatbot()">💬</div>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <span>AI Chatbot</span>
+            <button onclick="toggleChatbot()">✖</button>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
 
-</header>
-
-<!-- Chatbot Button -->
-<div id="chatbot-icon" onclick="toggleChatbot()">💬</div>
-
-<!-- Chatbot Window -->
-<div id="chatbot">
-    <div id="chatbot-header">
-        <span>AI Chatbot</span>
-        <button onclick="toggleChatbot()">✖</button>
-    </div>
-    <div id="chatbot-messages"></div>
-    <div id="chatbot-input">
-        <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-</div>
-
-    <!-- Corrected path for JS file -->
+    <!-- Link to external JS file -->
     <script src="{{ url_for('static', path='js/script.js') }}"></script>
 </body>
 </html>

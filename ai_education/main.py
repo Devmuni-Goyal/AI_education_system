@@ -5,68 +5,80 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# Define paths
+# Importing route modules for different sections of the platform
+from ai_education.routes import ai_learning, resources_hub, ethics_ai, about_us, contact_us
+
+# Define base directory and subdirectories for static files and templates
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
 TEMPLATES_DIR = BASE_DIR / "templates"
 
-# Ensure necessary directories exist
+# Ensure necessary directories exist for serving static files
 os.makedirs(STATIC_DIR / "css", exist_ok=True)
 os.makedirs(STATIC_DIR / "js", exist_ok=True)
+os.makedirs(STATIC_DIR / "images", exist_ok=True)
+os.makedirs(STATIC_DIR / "videos", exist_ok=True)
 os.makedirs(TEMPLATES_DIR, exist_ok=True)
 
-# Debugging print
-print(f"Static Directory Path: {STATIC_DIR}")  # Print to verify the static directory exists
+# Debugging print to verify directory existence
+print(f"Static Directory Path: {STATIC_DIR}")
 
+# Initialize FastAPI application
 app = FastAPI()
 
-# Mount static folder correctly
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+# Register imported routes for different sections of the platform
+app.include_router(ai_learning.router)
+app.include_router(resources_hub.router)
+app.include_router(ethics_ai.router)
+app.include_router(about_us.router)
+app.include_router(contact_us.router)
 
-# Set up Jinja2 templates
-templates = Jinja2Templates(directory=TEMPLATES_DIR)
+# Mount static folder to serve CSS, JS, images, and videos
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
+# Set up Jinja2 templates for rendering HTML responses
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+
+# Home route to render the homepage
 @app.get("/", response_class=HTMLResponse)
 async def read_home(request: Request):
-    """Home route to render the homepage overview of the platform."""
     try:
         return templates.TemplateResponse("index.html", {"request": request})
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
+# AI Learning Route
 @app.get("/ai_learning")
 async def ai_learning():
-    """Route for AI learning, personalized learning features."""
     return {"message": "AI Learning Features"}
 
+# Resources Hub Route
 @app.get("/resources_hub")
 async def resources_hub():
-    """Route for resources hub, containing PDFs, videos, study materials."""
     return {"message": "Resources Hub"}
 
+# Ethics of AI Route
 @app.get("/ethics_of_ai")
 async def ethics_of_ai():
-    """Route for Ethics of AI, emphasizing responsible AI learning."""
     return {"message": "Ethics of AI"}
 
-@app.get("/about_us")
-async def about_us():
-    """Route for the 'About Us' section to display platform details."""
-    return {"message": "About Us Information"}
+# About Us Route (renders an HTML page)
+@app.get("/about_us", response_class=HTMLResponse)
+async def about_us_page(request: Request):
+    return templates.TemplateResponse("about_us.html", {"request": request})
 
+# Contact Us Route
 @app.get("/contact_us")
 async def contact_us():
-    """Route for the 'Contact Us' section to provide support & inquiries."""
     return {"message": "Contact Us Information"}
 
+# Chatbot Route for handling chatbot queries
 @app.get("/chatbot")
 async def chatbot(query: str):
-    """Handles chatbot queries and stores logs."""
     response_text = "I am AI Chatbot! How can I help you?"
-    
     return JSONResponse(content={"response": response_text})
 
-# Optional logging to track content length and data
+# Middleware for logging response content length
 @app.middleware("http")
 async def log_request(request: Request, call_next):
     response = await call_next(request)
