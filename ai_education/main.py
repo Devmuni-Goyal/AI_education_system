@@ -39,6 +39,16 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 # Set up Jinja2 templates for rendering HTML responses
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
+# Dummy service data
+services = [
+    {"title": "AI Learning", "description": "Learn AI with our interactive courses.", "video_url": "/static/video/ai_learning.mp4"},
+    {"title": "Machine Learning", "description": "Understand ML concepts with hands-on projects.", "video_url": "/static/video/ml_course.mp4"},
+    {"title": "Data Science", "description": "Master data science fundamentals.", "video_url": "/static/video/data_science.mp4"},
+    {"title": "Deep Learning", "description": "Explore deep learning models.", "video_url": "/static/video/deep_learning.mp4"},
+    {"title": "Python Programming", "description": "Learn Python for AI & ML.", "video_url": "/static/video/python_course.mp4"},
+    {"title": "Cloud Deployment", "description": "Deploy AI models on the cloud.", "video_url": "/static/video/cloud_deployment.mp4"}
+]
+
 # Home route to render the homepage
 @app.get("/", response_class=HTMLResponse)
 async def read_home(request: Request):

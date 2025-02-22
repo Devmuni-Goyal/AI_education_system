@@ -1,6 +1,61 @@
 {% extends "index.html" %}
 
+{% block title %}Ethics of AI - Responsible AI Development{% endblock %}
+
 {% block content %}
-<h1>Ethics of AI</h1>
-<p>Learn about responsible AI development.</p>
+<div class="container">
+    <!-- Page Heading -->
+    <h1 class="text-center mt-4">Ethics of AI</h1>
+    <p class="lead text-center">Understand the importance of ethical AI development and responsible technology use.</p>
+
+    <!-- Introduction Section -->
+    <h2 class="mt-4">Why AI Ethics Matters?</h2>
+    <p>AI is transforming industries, but with great power comes great responsibility. Ethical AI ensures fairness, transparency, and privacy in technology.</p>
+
+    <!-- Key Ethical Principles -->
+    <h2 class="mt-4">Key Principles of Ethical AI</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Fairness:</strong> AI should not discriminate based on race, gender, or other biases.</li>
+        <li class="list-group-item"><strong>Transparency:</strong> Users should understand how AI systems make decisions.</li>
+        <li class="list-group-item"><strong>Privacy & Security:</strong> AI must protect personal data and user privacy.</li>
+        <li class="list-group-item"><strong>Accountability:</strong> Developers should be responsible for AI outcomes.</li>
+    </ul>
+
+    <!-- Common AI Ethical Challenges -->
+    <h2 class="mt-4">Challenges & Solutions</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Bias in AI</h4>
+            <p>AI models may inherit biases from training data, leading to unfair results.</p>
+            <p><strong>Solution:</strong> Use diverse datasets and fairness-aware algorithms.</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Privacy Concerns</h4>
+            <p>AI systems collect vast amounts of data, raising privacy issues.</p>
+            <p><strong>Solution:</strong> Implement strong data encryption and user consent policies.</p>
+        </div>
+    </div>
+
+    <!-- Case Studies Section -->
+    <h2 class="mt-4">Case Studies</h2>
+    <div class="card w-75 p-3">
+        <h4>Example: AI Bias in Hiring</h4>
+        <p>Some AI-based hiring tools have been found to favor certain demographics over others.</p>
+        <p><strong>Lesson:</strong> Regular audits and human oversight are necessary to maintain fairness.</p>
+    </div>
+
+    <!-- Call to Action -->
+    <h2 class="mt-4">What Can You Do?</h2>
+    <p>AI ethics is a shared responsibility. Stay informed, support ethical AI initiatives, and advocate for responsible AI policies.</p>
+    <a href="/learn_more" class="btn btn-primary">Learn More</a>
+
+    <hr/>
+
+    <!-- Video Section -->
+    <h2 class="mt-4">Watch AI Ethics in Action</h2>
+    <video width="600" class="rounded shadow-lg" controls>
+        <source src="{{ url_for('static', path='videos/ai_ethics.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 {% endblock %}

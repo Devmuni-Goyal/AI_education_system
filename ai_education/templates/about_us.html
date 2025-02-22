@@ -3,52 +3,53 @@
 {% block title %}About Us - AI-Based Education Platform{% endblock %}
 
 {% block content %}
-<h1>About Us</h1>
+<div class="container">
+    <h1 class="text-center">About Us</h1>
 
-<!-- Introduction about the platform -->
-<p>We are an AI-driven education platform dedicated to making learning accessible to everyone.</p>
+    <!-- Introduction -->
+    <p class="lead text-center">We are an AI-driven education platform dedicated to making learning accessible, interactive, and personalized for everyone.</p>
 
-<!-- Mission Statement -->
-<h2>Our Mission</h2>
-<p>Empowering students and educators with AI-based personalized learning experiences.</p>
+    <!-- Mission & Vision -->
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Our Mission</h2>
+            <p>Empowering students and educators with AI-based personalized learning experiences.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Our Vision</h2>
+            <p>To revolutionize education by integrating AI, making knowledge more interactive and adaptive.</p>
+        </div>
+    </div>
 
-<!-- Vision Statement -->
-<h2>Our Vision</h2>
-<p>To revolutionize education by integrating AI, making knowledge more interactive and adaptive.</p>
+    <!-- Meet Our Team -->
+    <h2 class="mt-4">Meet Our Team</h2>
+    <div class="card w-50 p-3">
+        <h4><strong>Devmuni Goyal</strong></h4>
+        <p>CEO & Founder</p>
+    </div>
 
-<!-- Meet the Team -->
-<h2>Meet Our Team</h2>
-<ul>
-    <li><strong>Devmuni Goyal</strong> - CEO & Founder</li> <!-- Your name updated -->
-</ul>
+    <!-- Our Journey -->
+    <h2 class="mt-4">Our Journey</h2>
+    <img src="{{ url_for('static', path='images/about_us.png') }}" alt="Our Team" class="img-fluid rounded shadow-lg" width="600">
 
-<!-- Our Journey with an Image -->
-<h2>Our Journey</h2>
-<img src="{{ url_for('static', path='images/about_us.png') }}" alt="Our Team" width="600">
+    <!-- Video about the platform -->
+    <h2 class="mt-4">Watch Our Story</h2>
+    <video width="600" class="rounded shadow-lg" controls>
+        <source src="{{ url_for('static', path='videos/our_story.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<!-- Video about the platform -->
-<h2>Watch Our Story</h2>
-<video width="600" controls>
-    <source src="{{ url_for('static', path='videos/our_story.mp4') }}" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+    <!-- Testimonials -->
+    <h2 class="mt-4">What People Say</h2>
+    <blockquote class="blockquote">
+        <p>"This platform has transformed the way I learn. AI-driven recommendations are amazing!"</p>
+        <footer class="blockquote-footer">A Happy Student</footer>
+    </blockquote>
 
-<!-- Testimonial Section -->
-<h2>What People Say</h2>
-<p>"This platform has transformed the way I learn. AI-driven recommendations are amazing!" - Student</p>
+    <!-- Call to Action -->
+    <h2 class="mt-4">Join Us</h2>
+    <p>Be a part of our journey. <a href="/contact_us">Contact Us</a> to learn more!</p>
 
-<!-- Call to Action -->
-<h2>Join Us</h2>
-<p>Be a part of our journey. <a href="/contact_us">Contact us</a> to learn more!</p>
-
-<!-- Social Media Links -->
-<h2>Follow Us</h2>
-
-<ul>
-    <li><a href="https://www.linkedin.com/in/devmuni-goyal-019316252/" target="_blank">LinkedIn</a></li>
-    <li><a href="https://www.instagram.com/devmunigoyal/" target="_blank">Instagram</a></li>
-    <li><a href="https://x.com/DevmuniGoyal" target="_blank">Twitter (X)</a></li>
-    <li><a href="https://www.facebook.com/devmuni.goyal" target="_blank">Facebook</a></li>
-</ul>
-
+    </div>
+</div>
 {% endblock %}
