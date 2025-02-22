@@ -48,19 +48,19 @@ async def read_home(request: Request):
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
 # AI Learning Route
-@app.get("/ai_learning")
-async def ai_learning():
-    return {"message": "AI Learning Features"}
+@app.get("/ai_learning", response_class=HTMLResponse)
+async def ai_learning(request: Request):
+   return templates.TemplateResponse("ai_learning.html", {"request": request})
 
 # Resources Hub Route
-@app.get("/resources_hub")
-async def resources_hub():
-    return {"message": "Resources Hub"}
+@app.get("/resources_hub", response_class=HTMLResponse)
+async def resources_hub(request: Request):
+    return templates.TemplateResponse("resources_hub.html", {"request": request})
 
 # Ethics of AI Route
-@app.get("/ethics_of_ai")
-async def ethics_of_ai():
-    return {"message": "Ethics of AI"}
+@app.get("/ethics_of_ai", response_class=HTMLResponse)
+async def ethics_of_ai(request: Request):
+ return templates.TemplateResponse("ethics_ai.html", {"request": request})
 
 # About Us Route (renders an HTML page)
 @app.get("/about_us", response_class=HTMLResponse)
@@ -68,9 +68,9 @@ async def about_us_page(request: Request):
     return templates.TemplateResponse("about_us.html", {"request": request})
 
 # Contact Us Route
-@app.get("/contact_us")
-async def contact_us():
-    return {"message": "Contact Us Information"}
+@app.get("/contact_us", response_class=HTMLResponse)
+async def contact_us(request: Request):
+     return templates.TemplateResponse("contact_us.html", {"request": request})
 
 # Chatbot Route for handling chatbot queries
 @app.get("/chatbot")
