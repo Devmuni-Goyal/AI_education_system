@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AI-Based Education Platform{% endblock %}</title>
     
-    <!-- Link to local CSS file for styling -->
+    <!-- Linking to external CSS file for styling -->
     <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
 
     <!-- FontAwesome for social media icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Meta tags for SEO -->
+    <!-- Meta tags for SEO optimization -->
     <meta name="description" content="AI-Based Education Platform for personalized learning">
     <meta name="keywords" content="AI, Education, Learning, Online Study">
     <meta name="author" content="AI Education System Team">
@@ -19,7 +19,7 @@
 <body>
     <h1>Welcome to AI-Based Education Platform</h1>
 
-    <!-- Header and Navigation -->
+    <!-- Header Section: Navigation Bar and Search Bar -->
     <header>
         <nav>
             <ul>
@@ -30,23 +30,55 @@
                 <li><a href='/contact_us'>Contact Us</a></li>
             </ul>
         </nav>
-
-        <!-- Search Bar -->
+        
+        <!-- Search Bar for users to search topics -->
         <div style="position: absolute; top: 20px; right: 20px;">
             <input type="text" id="searchBar" placeholder="Search...">
             <button onclick="alert('Search query: ' + document.getElementById('searchBar').value)">Send</button>
         </div>
     </header>
 
-    <!-- Main Content Area (This will be replaced by child templates) -->
+    <!-- Main Content Area -->
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        
+        <!-- Video Courses Section -->
+        <section id="video-courses">
+            <h2>Video Courses</h2>
+            <p>Explore AI-driven courses tailored for you.</p>
+            <video width="320" height="240" controls>
+                <source src="{{ url_for('static', path='videos/our_story.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+        
+        <!-- Blogs Section to display latest articles -->
+        <section id="blogs">
+            <h2>Latest Blogs</h2>
+            <article>
+                <h3>Understanding AI in Education</h3>
+                <p>AI is transforming the education sector...</p>
+                <a href="/blog/ai-in-education">Read More</a>
+            </article>
+        </section>
+        
+        <!-- Services Section listing available services -->
+        <section id="services">
+            <h2>Our Services</h2>
+            <ul>
+                AI-Powered Learning   <br>
+                Personalized Study Plans<br>
+                Expert Mentorship<br>
+            </ul>
+        </section>
+        
+        {% endblock %}
     </main>
 
-    <!-- Chatbot Button -->
+    <!-- Chatbot Section -->
     <div id="chatbot-icon" onclick="toggleChatbot()">💬</div>
 
-    <!-- Chatbot Window -->
+    <!-- Chatbot Window with messaging functionality -->
     <div id="chatbot">
         <div id="chatbot-header">
             <span>AI Chatbot</span>
@@ -59,7 +91,47 @@
         </div>
     </div>
 
-    <!-- Link to external JS file -->
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Quick Links Section -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                  <a href="/">Home</a>
+                   <br>
+                   <a href="/about_us">About Us</a>
+                </ul>
+            </div>
+            
+            <!-- Social Media Links Section -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="https://www.linkedin.com/in/devmuni-goyal-019316252/" target="_blank" class="btn btn-outline-primary">LinkedIn</a>
+                <a href="https://www.instagram.com/devmunigoyal/" target="_blank" class="btn btn-outline-danger">Instagram</a>
+                <a href="https://x.com/DevmuniGoyal" target="_blank" class="btn btn-outline-dark">Twitter</a>
+                <a href="https://www.facebook.com/devmuni.goyal" target="_blank" class="btn btn-outline-primary">Facebook</a>
+            </div>
+            
+            <!-- Legal Section -->
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="/privacy-policy">Privacy Policy</a> |
+                <a href="/terms">Terms of Service</a>
+            </div>
+            
+            <!-- Newsletter Subscription Section -->
+            <div class="footer-section">
+                <h3>Subscribe to Newsletter</h3>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <!-- Copyright Notice -->
+        <p class="copyright">© 2025 AI Education System. All rights reserved.</p>
+    </footer>
+
+    <!-- Linking external JavaScript file for interactivity -->
     <script src="{{ url_for('static', path='js/script.js') }}"></script>
 </body>
 </html>

@@ -49,3 +49,5 @@ function addMessage(text, className) {
     // Auto Scroll to Bottom
     messageContainer.scrollTop = messageContainer.scrollHeight;
 }
+
+

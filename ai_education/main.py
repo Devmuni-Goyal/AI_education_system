@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from routes import privacy_policy, terms
 
 # Importing route modules for different sections of the platform
 from ai_education.routes import ai_learning, resources_hub, ethics_ai, about_us, contact_us
@@ -33,21 +34,15 @@ app.include_router(ethics_ai.router)
 app.include_router(about_us.router)
 app.include_router(contact_us.router)
 
+# Include Privacy Policy and Terms Routes
+app.include_router(privacy_policy.router, prefix="/privacy-policy")
+app.include_router(terms.router, prefix="/terms")
+
 # Mount static folder to serve CSS, JS, images, and videos
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 # Set up Jinja2 templates for rendering HTML responses
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
-
-# Dummy service data
-services = [
-    {"title": "AI Learning", "description": "Learn AI with our interactive courses.", "video_url": "/static/video/ai_learning.mp4"},
-    {"title": "Machine Learning", "description": "Understand ML concepts with hands-on projects.", "video_url": "/static/video/ml_course.mp4"},
-    {"title": "Data Science", "description": "Master data science fundamentals.", "video_url": "/static/video/data_science.mp4"},
-    {"title": "Deep Learning", "description": "Explore deep learning models.", "video_url": "/static/video/deep_learning.mp4"},
-    {"title": "Python Programming", "description": "Learn Python for AI & ML.", "video_url": "/static/video/python_course.mp4"},
-    {"title": "Cloud Deployment", "description": "Deploy AI models on the cloud.", "video_url": "/static/video/cloud_deployment.mp4"}
-]
 
 # Home route to render the homepage
 @app.get("/", response_class=HTMLResponse)
@@ -81,6 +76,16 @@ async def about_us_page(request: Request):
 @app.get("/contact_us", response_class=HTMLResponse)
 async def contact_us(request: Request):
      return templates.TemplateResponse("contact_us.html", {"request": request})
+
+# Privacy Policy Route
+@app.get("/privacy-policy", response_class=HTMLResponse)
+async def privacy_policy_page(request: Request):
+    return templates.TemplateResponse("privacy_policy.html", {"request": request})
+
+# Terms & Conditions Route
+@app.get("/terms", response_class=HTMLResponse)
+async def terms_page(request: Request):
+    return templates.TemplateResponse("terms.html", {"request": request})
 
 # Chatbot Route for handling chatbot queries
 @app.get("/chatbot")
